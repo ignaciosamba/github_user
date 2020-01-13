@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
+            app:startDestination="@id/infinumWeatherFragment">
+
+    <fragment
+            android:id="@+id/infinumWeatherFragment"
+            android:name="com.sambataro.ignacio.anwbassesment.ui.infinum.InfinumFragment"
+            android:label="current_weather_fragment"
+            tools:layout="@layout/jakewharton_fragment" />
+
+    <fragment
+            android:id="@+id/jakewhartonFragment"
+            android:name="com.sambataro.ignacio.anwbassesment.ui.jakewharton.JakeWhartonFragment"
+            android:label="current_weather_fragment"
+            tools:layout="@layout/jakewharton_fragment" />
+
+
+</navigation>
