@@ -3,19 +3,24 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@id/infinumWeatherFragment">
+            app:startDestination="@id/infinumFragment">
 
     <fragment
-            android:id="@+id/infinumWeatherFragment"
+            android:id="@+id/infinumFragment"
             android:name="com.sambataro.ignacio.anwbassesment.ui.infinum.InfinumFragment"
-            android:label="current_weather_fragment"
-            tools:layout="@layout/jakewharton_fragment" />
+            android:label="Infinum User"
+            tools:layout="@layout/infinum_fragment" />
 
     <fragment
             android:id="@+id/jakewhartonFragment"
             android:name="com.sambataro.ignacio.anwbassesment.ui.jakewharton.JakeWhartonFragment"
-            android:label="current_weather_fragment"
-            tools:layout="@layout/jakewharton_fragment" />
+            android:label="Jake Wharton User"
+            tools:layout="@layout/jakewharton_fragment">
+            <action
+                android:id="@+id/actionDetail"
+                app:destination="@id/infinumFragment"
+            />
+    </fragment>
 
 
 </navigation>

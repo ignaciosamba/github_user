@@ -6,14 +6,15 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.sambataro.ignacio.anwbassesment.data.db.entity.Owner
-
-
 @Entity(tableName = "current_user")
 data class CurrentUserReposResponse(
     @PrimaryKey(autoGenerate = true)
     var table_id : Int = 0,
     @Embedded(prefix = "owner_")
-    val owner: Owner
+    val owner: Owner,
+    val name: String,
+    @SerializedName("updated_at")
+    val updatedAt: String
 //    @SerializedName("avatar_url")
 //    val avatarUrl: String,
 //    val blog: String,
@@ -37,7 +38,6 @@ data class CurrentUserReposResponse(
 //    val id: Int,
 //    val location: String,
 //    val login: String,
-//    val name: String,
 //    @SerializedName("node_id")
 //    val nodeId: String,
 //    @SerializedName("organizations_url")
@@ -57,7 +57,5 @@ data class CurrentUserReposResponse(
 //    @SerializedName("subscriptions_url")
 //    val subscriptionsUrl: String,
 //    val type: String,
-//    @SerializedName("updated_at")
-//    val updatedAt: String,
 //    val url: String
 )

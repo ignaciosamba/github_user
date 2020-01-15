@@ -13,6 +13,6 @@ interface CurrentOwnerDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsert(ownerEntry : CurrentUserReposResponse) : Long
 
-    @Query("select * from current_user where table_id")
-    fun getCurrentOwner(): LiveData<List<CurrentUserReposResponse>>
+    @Query("select * from current_user where owner_login= :userName")
+    fun getCurrentOwner(userName : String): LiveData<List<CurrentUserReposResponse>>
 }

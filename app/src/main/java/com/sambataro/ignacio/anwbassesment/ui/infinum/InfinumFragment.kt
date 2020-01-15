@@ -1,24 +1,23 @@
 package com.sambataro.ignacio.anwbassesment.ui.infinum
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sambataro.ignacio.anwbassesment.R
-import com.sambataro.ignacio.anwbassesment.internal.InfinumViewModelFactory
+import com.sambataro.ignacio.anwbassesment.data.network.response.CurrentUserReposResponse
+import com.sambataro.ignacio.anwbassesment.ui.base.ReposItem
 import com.sambataro.ignacio.anwbassesment.ui.base.ScopeFragment
-import kotlinx.coroutines.GlobalScope
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import kotlinx.android.synthetic.main.infinum_fragment.*
 
 class InfinumFragment : ScopeFragment(), KodeinAware{
 
@@ -47,10 +46,31 @@ class InfinumFragment : ScopeFragment(), KodeinAware{
             if(it == null) {
                 return@Observer
             }
-            Log.d("SAMBALOIDE", "SIZE IS: " + it.size)
-            it.forEach {
-                Log.d("SAMBALOIDE", "INFINUM IS: " + it.owner.login)
-            }
+
+            group_loading.visibility = View.GONE
+            initRecyclerView(it.toUserItems())
         })
+    }
+
+    private fun initRecyclerView(items: List<ReposItem>) {
+        val groupAdapter = GroupAdapter<ViewHolder>().apply {
+            addAll(items)
+        }
+
+        infiunm_recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@InfinumFragment.context)
+            adapter = groupAdapter
+        }
+//        groupAdapter.setOnItemClickListener { item, view ->
+//            (item as? ReposItem)?.let {
+//                showWeatherDetail(it.repo., view)
+//            }
+//        }
+    }
+
+    private fun List<CurrentUserReposResponse>.toUserItems() : List<ReposItem> {
+        return this.map {
+            ReposItem(it)
+        }
     }
 }

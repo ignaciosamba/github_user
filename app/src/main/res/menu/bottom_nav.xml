@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/currentWeatherFragment"
+            android:id="@+id/infinumFragment"
             android:title="@string/infinum"/>
     <item
-            android:id="@+id/futureListWeatherFragment"
+            android:id="@+id/jakewhartonFragment"
             android:title="@string/jakewharton"/>
 </menu>

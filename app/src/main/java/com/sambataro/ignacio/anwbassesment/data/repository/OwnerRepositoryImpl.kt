@@ -22,15 +22,15 @@ class OwnerRepositoryImpl(
         }
     }
 
-    private suspend fun initUser() {
-        fetchCurrentOwnerData()
+    private suspend fun initUser(user: String) {
+        fetchCurrentOwnerData(user)
     }
 
-    override suspend fun getCurrentOwner(): LiveData<List<CurrentUserReposResponse>> {
+    override suspend fun getCurrentOwner(user: String): LiveData<List<CurrentUserReposResponse>> {
 
         return withContext(Dispatchers.IO) {
-            initUser()
-            return@withContext currentUserDAO.getCurrentOwner()
+            initUser(user)
+            return@withContext currentUserDAO.getCurrentOwner(user)
         }
     }
 
@@ -46,8 +46,8 @@ class OwnerRepositoryImpl(
         }
     }
 
-    private suspend fun fetchCurrentOwnerData() {
-        ownerNetworkDataSource.fetchCurrentUserRepo("Infinum")
+    private suspend fun fetchCurrentOwnerData(user: String) {
+        ownerNetworkDataSource.fetchCurrentUserRepo(user)
     }
 
 

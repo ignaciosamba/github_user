@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?listPreferredItemHeightLarge"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="16dp">
+
+        <ImageView
+                android:id="@+id/avatar_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.032"
+                app:layout_constraintVertical_bias="1.0"
+                android:contentDescription="@string/avatar_image"/>
+        <TextView
+                android:id="@+id/repos_name_cardview_id"
+                android:hint="@string/repo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                app:layout_constraintStart_toEndOf="@+id/avatar_img"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:textSize="16sp"/>
+        <TextView
+                android:id="@+id/repos_description_cardview_id"
+                android:hint="@string/repo_description"
+                android:layout_width="161dp"
+                android:layout_height="16dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/repos_lastupdate_cardview_id"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="2dp" app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.894"/>
+        <TextView
+                android:id="@+id/repos_lastupdate_cardview_id"
+                android:text="@string/last_update"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/repos_name_cardview_id"
+                app:layout_constraintStart_toEndOf="@+id/avatar_img"
+                android:layout_marginBottom="5dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.685" android:layout_marginStart="4dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

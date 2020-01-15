@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData
 import com.sambataro.ignacio.anwbassesment.data.network.response.CurrentUserReposResponse
 
 interface OwnerRepository {
-    suspend fun getCurrentOwner() : LiveData<List<CurrentUserReposResponse>>
+    suspend fun getCurrentOwner(user: String) : LiveData<List<CurrentUserReposResponse>>
 }

@@ -1,15 +1,14 @@
-package com.sambataro.ignacio.anwbassesment.ui.infinum
+package com.sambataro.ignacio.anwbassesment.ui.jakewharton
 
 import androidx.lifecycle.ViewModel
 import com.sambataro.ignacio.anwbassesment.data.repository.OwnerRepository
 import com.sambataro.ignacio.anwbassesment.internal.lazyDeferred
 
-class InfinumViewModel(
+class JakeWhartonViewModel(
     private val ownerRepository: OwnerRepository
 ) : ViewModel() {
 
     val user by lazyDeferred {
-        ownerRepository.getCurrentOwner("infinum")
+        ownerRepository.getCurrentOwner("JakeWharton")
     }
-
 }

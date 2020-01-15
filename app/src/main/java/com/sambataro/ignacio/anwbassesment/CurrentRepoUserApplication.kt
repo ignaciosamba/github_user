@@ -10,11 +10,10 @@ import com.sambataro.ignacio.anwbassesment.data.network.OwnerNetworkDataSource
 import com.sambataro.ignacio.anwbassesment.data.network.OwnerNetworkDataSourceImpl
 import com.sambataro.ignacio.anwbassesment.data.repository.OwnerRepository
 import com.sambataro.ignacio.anwbassesment.data.repository.OwnerRepositoryImpl
-import com.sambataro.ignacio.anwbassesment.internal.InfinumViewModelFactory
-import com.sambataro.ignacio.anwbassesment.ui.infinum.InfinumFragment
+import com.sambataro.ignacio.anwbassesment.ui.infinum.InfinumViewModelFactory
+import com.sambataro.ignacio.anwbassesment.ui.jakewharton.JakeWhartonViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.androidModule
 import org.kodein.di.android.x.androidXModule
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -31,7 +30,16 @@ class CurrentRepoUserApplication : Application(), KodeinAware {
         bind() from singleton { ApiCurrentUser(instance())}
         bind<OwnerNetworkDataSource>() with singleton { OwnerNetworkDataSourceImpl(instance())}
         bind<OwnerRepository>() with singleton { OwnerRepositoryImpl(instance(), instance()) }
-        bind() from provider { InfinumViewModelFactory(instance())}
+        bind() from provider {
+            InfinumViewModelFactory(
+                instance()
+            )
+        }
+        bind() from provider {
+            JakeWhartonViewModelFactory(
+                instance()
+            )
+        }
     }
 
     override fun onCreate() {

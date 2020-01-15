@@ -25,9 +25,7 @@ import org.kodein.di.android.closestKodein
 
 class MainActivity : AppCompatActivity(), KodeinAware {
 
-//    override val kodein by closestKodein()
-
-    override val kodein: Kodein by lazy { (applicationContext as KodeinAware).kodein }
+    override val kodein by closestKodein()
 
     private lateinit var navController: NavController
 
@@ -39,6 +37,17 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottom_nav.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+//        bottom_nav.setOnNavigationItemReselectedListener {
+//            menuItem ->
+//            when (menuItem.itemId) {
+//
+//            }
+//        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(null, navController)
     }
 
 }
