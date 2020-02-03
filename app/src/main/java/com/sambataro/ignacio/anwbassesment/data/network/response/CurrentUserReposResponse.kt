@@ -1,22 +1,32 @@
 package com.sambataro.ignacio.anwbassesment.data.network.response
 
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.annotation.NonNull
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import com.sambataro.ignacio.anwbassesment.data.db.entity.Owner
+
+
+
 @Entity(tableName = "current_user")
 data class CurrentUserReposResponse(
     @PrimaryKey(autoGenerate = true)
-    var table_id : Int = 0,
+    val id: Int,
     @Embedded(prefix = "owner_")
     val owner: Owner,
     val name: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    @ColumnInfo(defaultValue = "No description")
+    @NonNull
+    val description : String,
+    @ColumnInfo(defaultValue = "")
+    @NonNull
+    @SerializedName("svn_url")
+    val svnUrl : String
+//    val url: String
 //    @SerializedName("avatar_url")
-//    val avatarUrl: String,
+//    val avatarUrl: String
 //    val blog: String,
 //    val company: String,
 //    @SerializedName("created_at")
@@ -35,7 +45,6 @@ data class CurrentUserReposResponse(
 //    val gravatarId: String,
 //    @SerializedName("html_url")
 //    val htmlUrl: String,
-//    val id: Int,
 //    val location: String,
 //    val login: String,
 //    @SerializedName("node_id")
@@ -57,5 +66,5 @@ data class CurrentUserReposResponse(
 //    @SerializedName("subscriptions_url")
 //    val subscriptionsUrl: String,
 //    val type: String,
-//    val url: String
+
 )

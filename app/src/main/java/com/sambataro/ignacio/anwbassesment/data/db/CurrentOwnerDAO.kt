@@ -15,4 +15,7 @@ interface CurrentOwnerDAO {
 
     @Query("select * from current_user where owner_login= :userName")
     fun getCurrentOwner(userName : String): LiveData<List<CurrentUserReposResponse>>
+
+    @Query("select * from current_user where owner_login= :userName")
+    fun getCurrentOwnerNonLive(userName : String): List<CurrentUserReposResponse>?
 }

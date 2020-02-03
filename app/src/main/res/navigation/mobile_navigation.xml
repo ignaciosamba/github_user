@@ -3,22 +3,36 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@id/infinumFragment">
+            app:startDestination="@id/search_fragment">
+
+    <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.sambataro.ignacio.anwbassesment.ui.search.SearchFragment"
+            android:label="Search"
+            tools:layout="@layout/search_fragment"
+            tools:ignore="ExtraText">
+        <action
+            android:id="@+id/send_user_to_infinumFragment"
+            app:destination="@id/infinumFragment" >
+            <argument
+                    android:name="@string/user_name_search"
+                    app:argType="string"/>
+            </action>
+    </fragment>
+
 
     <fragment
             android:id="@+id/infinumFragment"
             android:name="com.sambataro.ignacio.anwbassesment.ui.infinum.InfinumFragment"
             android:label="Infinum User"
-            tools:layout="@layout/infinum_fragment" />
-
-    <fragment
-            android:id="@+id/jakewhartonFragment"
-            android:name="com.sambataro.ignacio.anwbassesment.ui.jakewharton.JakeWhartonFragment"
-            android:label="Jake Wharton User"
-            tools:layout="@layout/jakewharton_fragment">
+            tools:layout="@layout/infinum_fragment" >
+            <argument
+                android:name="@string/user_name_search"
+                app:argType="string"
+            />
             <action
-                android:id="@+id/actionDetail"
-                app:destination="@id/infinumFragment"
+                android:id="@+id/action_infinumFragment_to_search_fragment"
+                app:destination="@id/search_fragment"
             />
     </fragment>
 

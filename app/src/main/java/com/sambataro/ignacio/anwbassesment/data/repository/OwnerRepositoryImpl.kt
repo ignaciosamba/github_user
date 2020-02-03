@@ -23,7 +23,17 @@ class OwnerRepositoryImpl(
     }
 
     private suspend fun initUser(user: String) {
-        fetchCurrentOwnerData(user)
+//        val lastUser = currentUserDAO.getCurrentOwnerNonLive(user)
+//        if (lastUser == null || fetchUserIsNeeded(user, lastUser))
+            fetchCurrentOwnerData(user)
+    }
+
+    private fun fetchUserIsNeeded(user: String, lastUser : List<CurrentUserReposResponse>): Boolean{
+        var isNeeded = true
+        for (item in lastUser) {
+            isNeeded = user != item.owner.login
+        }
+        return isNeeded
     }
 
     override suspend fun getCurrentOwner(user: String): LiveData<List<CurrentUserReposResponse>> {
@@ -36,13 +46,9 @@ class OwnerRepositoryImpl(
 
     private fun persistFetchCurrentOwner(fetchedOwner: List<CurrentUserReposResponse>) {
         GlobalScope.launch(Dispatchers.IO){
-            Log.d("SAMBALOIDE", "persistFetchCurrentOwner has a value of: " + fetchedOwner[0].owner.login)
-            Log.d("SAMBALOIDE", "persistFetchCurrentOwner has a size of: " + fetchedOwner.size)
-            var rowId : Long = 0
             for (item in fetchedOwner) {
-                 rowId = currentUserDAO.upsert(item)
+                 currentUserDAO.upsert(item)
             }
-            Log.d("SAMBALOIDE", "DAO has update the:" + rowId)
         }
     }
 

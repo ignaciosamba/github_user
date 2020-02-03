@@ -35,15 +35,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         setSupportActionBar(toolbar)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        bottom_nav.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController)
-
-//        bottom_nav.setOnNavigationItemReselectedListener {
-//            menuItem ->
-//            when (menuItem.itemId) {
-//
-//            }
-//        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

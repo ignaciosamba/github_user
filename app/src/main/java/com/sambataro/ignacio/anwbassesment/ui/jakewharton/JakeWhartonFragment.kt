@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sambataro.ignacio.anwbassesment.R
 import com.sambataro.ignacio.anwbassesment.data.network.response.CurrentUserReposResponse
+import com.sambataro.ignacio.anwbassesment.ui.base.DetailDialog
 import com.sambataro.ignacio.anwbassesment.ui.base.ReposItem
 import com.sambataro.ignacio.anwbassesment.ui.base.ScopeFragment
 import com.xwray.groupie.GroupAdapter
@@ -60,16 +61,21 @@ class JakeWhartonFragment : ScopeFragment(), KodeinAware {
             layoutManager = LinearLayoutManager(this@JakeWhartonFragment.context)
             adapter = groupAdapter
         }
-//        groupAdapter.setOnItemClickListener { item, view ->
-//            (item as? ReposItem)?.let {
-//                showWeatherDetail(it.repo., view)
-//            }
-//        }
+        groupAdapter.setOnItemClickListener { item, view ->
+            (item as? ReposItem)?.let {
+                showDetail(it.repo, view)
+            }
+        }
     }
 
     private fun List<CurrentUserReposResponse>.toUserItems() : List<ReposItem> {
         return this.map {
             ReposItem(it)
         }
+    }
+
+    private fun showDetail(repo : CurrentUserReposResponse, view : View) {
+        val dialog = DetailDialog(repo)
+        dialog.show(this@JakeWhartonFragment.fragmentManager, "Description Dialog")
     }
 }
